@@ -2,7 +2,7 @@ import ModeToggle from "./Mode-toggle"
 
 function Header() {
   return (
-    <div className="h-12 flex items-center justify-between">
+    <div className="h-12 flex items-center justify-between border">
         <ModeToggle/>
         {/* Tabs */}
         <div>

@@ -140,7 +140,7 @@ export const findOtherUsers = async (req: AuthRequest, res: Response) => {
     try {
         const userId = req.userId;
         const users = await User.find({ _id: { $ne: userId! } })
-            .select("_id username profilePicture gender").limit(20);
+            .select("_id username profilePicture gender fullname").limit(20);
         return res.status(200).json({ users });
     } catch (error) {
         return res.status(500).json({ message: "Internal server error" });
