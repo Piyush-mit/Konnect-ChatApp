@@ -31,12 +31,23 @@ export const createUser = async (user: UserSignup): Promise<UserResponse> => {
 
 export const loginUser = async (user: UserSignin): Promise<UserResponse> => {
     try {
-        const response = await api.post("/user/signin", user);
+        const { usernameInput: username, passwordInput: password } = user;
+        const response = await api.post("/user/signin", { username, password });
         if (response.status === 200) return response.data;
-        else throw new Error(response.data.message);
-        
+        throw new Error(response.data.message);
+
     } catch (error: any) {
         throw new Error(error.message || "Signin failed");
+    }
+}
+
+export const logout = async () => {
+    try {
+        const response = await api.post("/user/logout");
+        if (response.status == 200) return response.data;
+        throw new Error(response.data.message);
+    } catch (error: any) {
+        throw new Error(error.message || "Logout failed")
     }
 }
 

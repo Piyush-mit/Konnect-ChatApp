@@ -1,13 +1,19 @@
+import { useSelector } from "react-redux"
 import ModeToggle from "./Mode-toggle"
+import type { StateType } from "@/redux/store"
+import Profile from "./Profile";
+import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 function Header() {
+  const { profilePicture } = useSelector((state: StateType) => state.userReducer.authUser);
   return (
-    <div className="h-12 flex items-center justify-between border">
-        <ModeToggle/>
-        {/* Tabs */}
-        <div>
-            
-        </div>
+    <div className="h-12 flex items-center justify-between border px-2">
+      <ModeToggle />
+      {/* Tabs & User*/}
+      <div className="">
+          {profilePicture ? <Profile/> : <Link to={'/signin'}><Button variant="secondary">Login</Button></Link>}
+      </div>
     </div>
   )
 }

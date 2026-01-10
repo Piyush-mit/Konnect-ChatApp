@@ -1,9 +1,16 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-interface User {
-    fullname : string ,
-    username : string ,
-    userId : string ,
-    profilePicture : string
+export interface User {
+  fullname: string,
+  username: string,
+  userId: string,
+  profilePicture: string
+}
+export interface OtherUser {
+  _id: string,
+  fullname: string,
+  username: string,
+  profilePicture: string,
+  gender: string
 }
 const demoUsers = [
   {
@@ -148,25 +155,42 @@ const demoUsers = [
   },
 ];
 
-
-
-
-const initialState = {
-    authUser: {},
-    selectedUser: {},
-    onlineUsers: [],
-    otherUsers: demoUsers
+export interface InitialStateInterface {
+  authUser: User,
+  selectedUser: OtherUser,
+  onlineUsers: Array<OtherUser>,
+  otherUsers: Array<OtherUser>
+}
+const initialState : InitialStateInterface = {
+  authUser: {
+    fullname : "" ,
+    userId : "" ,
+    username : "" ,
+    profilePicture : ""
+  },
+  selectedUser: {
+    _id: "",
+    fullname: "",
+    username: "",
+    profilePicture: "",
+    gender: "",
+  },
+  onlineUsers: demoUsers,
+  otherUsers: demoUsers
 }
 
 const userSlice = createSlice({
-    name: "user",
-    initialState,
-    reducers: {
-        setAuth: (state, action: PayloadAction<User>) => {
-            state.authUser = action.payload;
-        },
+  name: "user",
+  initialState,
+  reducers: {
+    setAuth: (state, action: PayloadAction<User>) => {
+      state.authUser = action.payload;
+    },
+    setSelectedUser : (state , action) => {
+      state.selectedUser = action.payload ;
     }
+  }
 })
 
 export default userSlice.reducer;
-export const { setAuth } = userSlice.actions;
+export const { setAuth , setSelectedUser } = userSlice.actions;

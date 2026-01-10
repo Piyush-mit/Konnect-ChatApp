@@ -3,7 +3,7 @@ import { ItemDescription, ItemTitle } from "./ui/item";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function UserCard(props: { info: OtherUser }) {
+function UserHeader(props: { info: OtherUser }) {
     const { info: user } = props;
     const [online , setOnline] = useState(false);
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function UserCard(props: { info: OtherUser }) {
         dispatch(setSelectedUser(user));
     }
     return (
-        <div className="flex hover:bg-white/5 px-3 rounded-lg py-2" onClick={handleClick}>
+        <div className="flex px-3 rounded-lg py-2" onClick={handleClick}>
 
             {/* Avatar */}
             <div className="relative w-11 h-11 rounded-full flex content-center">
@@ -31,4 +31,4 @@ function UserCard(props: { info: OtherUser }) {
     )
 }
 
-export default UserCard;
+export default UserHeader;

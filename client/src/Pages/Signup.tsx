@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Spinner } from "@/components/ui/spinner";
 import { setAuth } from "@/redux/slices/user.slice";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -31,7 +32,7 @@ export default function Signup() {
     const fullname = fullNameRef.current?.value;
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
-    
+
     if (!fullname || !username || !password) {
       toast.error("All feilds required!");
       return;
@@ -42,10 +43,10 @@ export default function Signup() {
       const userdata = await createUser({ fullname, username, password, gender });
       toast.success(userdata.message);
       dispatch(setAuth({
-        fullname : userdata.fullname ,
-        userId : userdata.userId ,
-        username : userdata.username ,
-        profilePicture : userdata.profilePicture
+        fullname: userdata.fullname,
+        userId: userdata.userId,
+        username: userdata.username,
+        profilePicture: userdata.profilePicture
       }))
       navigate("/signin");
     } catch (error: any) {
@@ -102,13 +103,15 @@ export default function Signup() {
                   <div className="flex items-center">
                     <Label htmlFor="password">Gender</Label>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="male" id="option-one" />
-                    <Label htmlFor="option-one">Male</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="female" id="option-two" />
-                    <Label htmlFor="option-two">Female</Label>
+                  <div className="flex gap-3">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="male" id="option-one" />
+                      <Label htmlFor="option-one">Male</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="female" id="option-two" />
+                      <Label htmlFor="option-two">Female</Label>
+                    </div>
                   </div>
                 </RadioGroup>
               </div>
@@ -123,7 +126,7 @@ export default function Signup() {
             disabled={loading}
             onClick={handleSubmit}
           >
-            Create Account
+            {loading ? <Spinner/> : "Create Account"}
           </Button>
           <div className="flex justify-center items-center gap-1">
             <div className="text-muted-foreground text-sm">

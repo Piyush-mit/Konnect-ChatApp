@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
 import { setAuth } from "@/redux/slices/user.slice";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -38,9 +39,9 @@ export default function Signup() {
       const { fullname, username, userId, profilePicture, message } = await loginUser({ usernameInput, passwordInput });
       toast.success(message);
       dispatch(setAuth({ fullname, username, userId, profilePicture }));
-      navigate("/signin");
+      navigate("/");
     } catch (error: any) {
-      toast.error(error.message)
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -88,14 +89,14 @@ export default function Signup() {
             disabled={loading}
             onClick={handleSubmit}
           >
-            Login
+            {loading ? <Spinner/> : "Login"}
           </Button>
           <div className="flex justify-center items-center gap-1">
             <div className="text-muted-foreground text-sm">
               Don't have an account ?
             </div>
             <Link to={'/signup'} className="flex">
-              <Button variant="link" className="p-0" >Sign Up</Button>
+              <Button variant="link" className="p-0" >Sign up</Button>
             </Link>
           </div>
         </CardFooter>

@@ -70,7 +70,7 @@ export const signup = async (req: Request, res: Response) => {
 
         return res.status(201).json({
             message: "Account created successfully",
-            fullName: createdUser.fullname,
+            fullname: createdUser.fullname,
             username: createdUser.username,
             userId: createdUser._id,
             profilePicture: createdUser.profilePicture
@@ -118,7 +118,7 @@ export const signin = async (req: Request, res: Response) => {
 
         return res.status(200).json({
             message: "Logged in successfully",
-            fullName: user.fullname,
+            fullname: user.fullname,
             username: user.username,
             userId: user._id,
             profilePicture: user.profilePicture
@@ -128,7 +128,7 @@ export const signin = async (req: Request, res: Response) => {
     }
 }
 
-export const logout = (req: Request, res: Response) => {
+export const logout = (req: AuthRequest, res: Response) => {
     try {
         return res.clearCookie("token").status(200).json({ message: "Cookie cleared successfully" });
     } catch (error) {

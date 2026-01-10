@@ -61,7 +61,7 @@ const signup = async (req, res) => {
         });
         return res.status(201).json({
             message: "Account created successfully",
-            fullName: createdUser.fullname,
+            fullname: createdUser.fullname,
             username: createdUser.username,
             userId: createdUser._id,
             profilePicture: createdUser.profilePicture
@@ -99,8 +99,8 @@ const signin = async (req, res) => {
             maxAge: 1000 * 60 * 60 * 24
         });
         return res.status(200).json({
-            message: "User found",
-            fullName: user.fullname,
+            message: "Logged in successfully",
+            fullname: user.fullname,
             username: user.username,
             userId: user._id,
             profilePicture: user.profilePicture
@@ -124,7 +124,7 @@ const findOtherUsers = async (req, res) => {
     try {
         const userId = req.userId;
         const users = await userModel_1.User.find({ _id: { $ne: userId } })
-            .select("_id username profilePicture gender").limit(20);
+            .select("_id username profilePicture gender fullname").limit(20);
         return res.status(200).json({ users });
     }
     catch (error) {
