@@ -42,15 +42,15 @@ export default function Signup() {
       setLoading(true);
       const userdata = await createUser({ fullname, username, password, gender });
       toast.success(userdata.message);
-      dispatch(setAuth({
-        fullname: userdata.fullname,
-        userId: userdata.userId,
-        username: userdata.username,
-        profilePicture: userdata.profilePicture
-      }))
-      navigate("/signin");
+      dispatch(setAuth({ 
+        fullname : userdata.fullname ,
+        userId : userdata.userId ,
+        username : userdata.username ,
+        profilePicture : userdata.profilePicture
+      }));
+      navigate("/");
     } catch (error: any) {
-      toast.error(error.message)
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -126,7 +126,7 @@ export default function Signup() {
             disabled={loading}
             onClick={handleSubmit}
           >
-            {loading ? <Spinner/> : "Create Account"}
+            {loading ? <Spinner /> : "Create Account"}
           </Button>
           <div className="flex justify-center items-center gap-1">
             <div className="text-muted-foreground text-sm">

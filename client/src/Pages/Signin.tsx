@@ -19,9 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Signup() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
   const [loading, setLoading] = useState<boolean>(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,8 +43,8 @@ export default function Signup() {
     } finally {
       setLoading(false);
     }
-
   }
+
   return (
     <div className="flex w-screen h-[calc(100dvh-60px)] justify-center items-center">
       <Card className="w-full max-w-sm relative bottom-8">
@@ -89,7 +87,7 @@ export default function Signup() {
             disabled={loading}
             onClick={handleSubmit}
           >
-            {loading ? <Spinner/> : "Login"}
+            {loading ? <Spinner /> : "Login"}
           </Button>
           <div className="flex justify-center items-center gap-1">
             <div className="text-muted-foreground text-sm">

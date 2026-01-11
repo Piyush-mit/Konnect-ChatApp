@@ -12,7 +12,11 @@ function Header() {
       <ModeToggle />
       {/* Tabs & User*/}
       <div className="">
-          {profilePicture ? <Profile/> : <Link to={'/signin'}><Button variant="secondary">Login</Button></Link>}
+        {profilePicture ?
+          <Profile />
+          :
+          <Link to={'/signin'}><Button variant="secondary" className="rounded-full">Login</Button></Link>
+        }
       </div>
     </div>
   )

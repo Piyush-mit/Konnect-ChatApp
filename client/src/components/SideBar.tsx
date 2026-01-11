@@ -1,15 +1,37 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Input } from "./ui/input";
 import type { StateType } from "@/redux/store";
 import UserCard from "./UserCard";
 import { ScrollArea } from "./ui/scroll-area";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { setOtherUsers } from "@/redux/slices/user.slice";
+import { api } from "@/api";
 export default function SideBar() {
+  const dispatch = useDispatch();
   const otherUsers = useSelector((state: StateType) => state.userReducer.otherUsers);
   const [users, setUsers] = useState(otherUsers);
+
   function filterUsers(searchTerm: string) {
-    setUsers(otherUsers.filter((u) => u.username.toLowerCase().includes(searchTerm)));
+    setUsers(otherUsers.filter((u) =>
+      u.username?.toLowerCase().includes(searchTerm) || u.fullname?.toLowerCase().includes(searchTerm)));
   }
+
+  const getOtherUsers = async () => {
+    try {
+      const response = await api.get("/user/otherusers");
+      if (response.status == 200) {
+        dispatch(setOtherUsers(response.data.users));
+        setUsers(response.data.users);
+      };
+    } catch (err: any) {
+      dispatch(setOtherUsers([]));
+    }
+  }
+
+  useEffect(() => {
+    getOtherUsers();
+  }, [])
+
   return (
     <div className="w-[25dvw] pt-2 h-[calc(100dvh-60px)] flex flex-col border-r ">
       <div className="w-full px-3">

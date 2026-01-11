@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findOtherUsers = exports.logout = exports.signin = exports.signup = void 0;
+exports.auth = exports.findOtherUsers = exports.logout = exports.signin = exports.signup = void 0;
 const userModel_1 = require("../models/userModel");
 const zod_1 = __importDefault(require("zod"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -132,4 +132,9 @@ const findOtherUsers = async (req, res) => {
     }
 };
 exports.findOtherUsers = findOtherUsers;
+const auth = async (req, res) => {
+    const user = await userModel_1.User.findById(req.userId).select("fullname username _id profilePicture");
+    res.json({ user });
+};
+exports.auth = auth;
 //# sourceMappingURL=user.controller.js.map

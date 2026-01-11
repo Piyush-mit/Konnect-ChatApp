@@ -22,10 +22,9 @@ interface UserSignin {
 export const createUser = async (user: UserSignup): Promise<UserResponse> => {
     try {
         const response = await api.post("/user/signup", user);
-        if (response.status === 201) return response.data;
-        else throw new Error(response.data.message);
+        return response.data;
     } catch (error: any) {
-        throw new Error(error.message || "Signup failed");
+        throw new Error(error.response.data.message || "Signup failed");
     }
 }
 
@@ -33,11 +32,9 @@ export const loginUser = async (user: UserSignin): Promise<UserResponse> => {
     try {
         const { usernameInput: username, passwordInput: password } = user;
         const response = await api.post("/user/signin", { username, password });
-        if (response.status === 200) return response.data;
-        throw new Error(response.data.message);
-
+        return response.data ;
     } catch (error: any) {
-        throw new Error(error.message || "Signin failed");
+        throw new Error(error.response.data.message || "Signin failed");
     }
 }
 
@@ -50,4 +47,5 @@ export const logout = async () => {
         throw new Error(error.message || "Logout failed")
     }
 }
+
 

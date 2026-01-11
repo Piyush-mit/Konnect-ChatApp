@@ -8,7 +8,6 @@ import Signin from "./Pages/Signin"
 import Header from "./components/Header"
 
 function App() {
-
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Header />
@@ -22,4 +21,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

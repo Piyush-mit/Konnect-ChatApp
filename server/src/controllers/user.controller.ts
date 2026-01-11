@@ -146,3 +146,12 @@ export const findOtherUsers = async (req: AuthRequest, res: Response) => {
         return res.status(500).json({ message: "Internal server error" });
     }
 }
+
+export const auth = async (req: AuthRequest, res: Response) => {
+    try {
+        const user = await User.findById(req.userId).select("fullname username _id profilePicture");
+        res.json({ user });
+    } catch (error) {
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
