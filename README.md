@@ -96,7 +96,7 @@ Frontend and backend are maintained in **separate folders** for scalability.
 ![Landing Light](screenshots/landingpagelight.png)
 
 ### 🌙 anding Page / Chat section (Dark Theme)
-![Landing Dark](screenshots/landingpagedark.png)
+![Landing Dark](screenshots/landingPagedark.png)
 
 ### 🔐 Sign In Page (Light)
 ![Sign In Light](screenshots/loginlight.png)
