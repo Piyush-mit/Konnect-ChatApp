@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/config/database.ts","./src/controllers/message.controller.ts","./src/controllers/user.controller.ts","./src/middlewares/user.middleware.ts","./src/models/chatmodel.ts","./src/models/messagemodel.ts","./src/models/usermodel.ts","./src/routes/message.routes.ts","./src/routes/user.routes.ts","./src/socket/socket.ts"],"version":"5.9.3"}
