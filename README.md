@@ -145,7 +145,7 @@ VITE_REACT_APP_BACKEND_BASEURL=http://localhost:XXXX
 
 ### Clone Repository
 ```bash
-git clone https://github.com/Piyush-mit/Learning-Through-Projects.git
+git clone https://github.com/Piyush-mit/Konnect-ChatApp.git
 cd Konnect
 ```
 
